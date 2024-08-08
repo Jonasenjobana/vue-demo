@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import Test from './Test.vue';
-import Layout from '../main/layout/Layout.vue';
 const msg = ref('hello vue');
 const testRef = ref();
 onMounted(() => {
@@ -21,7 +20,6 @@ onMounted(() => {
       </div>
     </template>
   </Test>
-  <Layout></Layout>
 </template>
 
 <style scoped>

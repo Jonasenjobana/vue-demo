@@ -10,7 +10,12 @@
 </template>
 
 <script setup lang="ts">
-import { getCurrentInstance, nextTick, onMounted, onUnmounted, reactive, ref, watch } from 'vue';
+import { getCurrentInstance, onMounted, onUnmounted, ref, watch } from 'vue';
+console.log(getCurrentInstance(),'gggggggggggggggggggggggggggggggggggg')
+let a = 'test reabase'
+setTimeout(() => {
+    console.log(getCurrentInstance(),'testsssssssssssssssssssssss')
+  }, 2500);
 const props = defineProps({
     msg: {
         type: String,
@@ -22,9 +27,8 @@ const props = defineProps({
     }
 })
 const msg = ref<string>(props.msg)
-const title = reactive(msg)
 const emit = defineEmits(['masChange', 'nothing'])
-watch(msg, (newV: string, oldV: string) => {
+watch(msg, (newV: string) => {
     emit('masChange', newV)
 })
 onMounted(() => {

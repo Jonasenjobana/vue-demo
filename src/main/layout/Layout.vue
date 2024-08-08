@@ -1,12 +1,12 @@
 <template>
-    <div class="layout">
-        <div class="header">
+    <div class="flex flex-col w-full h-screen">
+        <div class="w-full h-[60px]">
             <slot name="header"></slot>
         </div>
-        <div class="content">
+        <div class="w-full flex-1">
             <slot></slot>
         </div>
-        <div class="footer">
+        <div class="w-full h-[60px]">
             <slot name="footer"></slot>
         </div>
     </div>
@@ -15,25 +15,3 @@
 <script setup lang="ts">
 
 </script>
-
-<style scoped lang="less">
-    .layout {
-        width: 100%;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        & > .header {
-            width: 100%;
-            height: 60px;
-            display: flex;
-        }
-        .content {
-            flex: 1;
-            width: 100%;
-        }
-        .footer {
-            width: 100%;
-            height: 60px;
-        }
-    }
-</style>

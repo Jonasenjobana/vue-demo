@@ -24,16 +24,6 @@ const props = defineProps({
 const msg = ref<string>(props.msg)
 const title = reactive(msg)
 const emit = defineEmits(['masChange', 'nothing'])
-watch(msg, (newV: string, oldV: string) => {
-    emit('masChange', newV)
-})
-onMounted(() => {
-    console.log('mounted')
-})
-onUnmounted(() => {
-    console.log('destory')
-})
-console.log(props.msg, 'damn', getCurrentInstance(), this)
 </script>
 
 <style scoped></style>

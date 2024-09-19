@@ -1,9 +1,21 @@
 import { RouteRecordRaw } from "vue-router";
-import Button from "./button/Button.vue";
-import SlSelect from "./select/AppSelect.vue";
+import ButtonDemo from "./demo/button-demo/ButtonDemo.vue";
+import Demo from "./demo/Demo.vue";
 export const componentRoute: RouteRecordRaw[] = [
-    { path: "select", name: "sl-select", component: SlSelect },
-    { path: "button", name: "Components", component: Button },
-    { path: '', redirect: '/main/components-library/button' },
-  ];
-  
+  {
+    path: "demo",
+    name: "demo",
+    component: Demo,
+    children: [
+      {
+        path: "button",
+        component: ButtonDemo,
+      },
+      {
+        path: "select",
+        component: ButtonDemo,
+      },
+    ],
+  },
+  { path: "", redirect: "/main/component/demo" },
+];

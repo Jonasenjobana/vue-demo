@@ -8,12 +8,12 @@ import Main from './main/Main.vue';
 import { mainRoute } from './main/main.route';
 const routes: RouteRecordRaw[] = [
   // { path: '/hello', component: HelloWorld },
-  { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
   { path: '/main', component: Main, children: mainRoute },
+  { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
 ]
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
 })
-createApp(App).use(router).mount('#app')
+export const app = createApp(App).use(router).mount('#app')

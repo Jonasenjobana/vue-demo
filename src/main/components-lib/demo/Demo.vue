@@ -1,5 +1,7 @@
 <template>
-    <button>test</button>
+    <div>
+        <RouterView></RouterView>
+    </div>
 </template>
 
 <script setup lang="ts">

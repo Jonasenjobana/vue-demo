@@ -10,15 +10,5 @@
 </template>
 
 <script setup lang="ts">
- import { inject, Ref, watch } from 'vue';
 import { MenuList } from './menu';
-const props = defineProps({
-    slotProps: {}
-})
-const count = inject<Ref<number>>('mainCount')
-console.log(props.slotProps)
-if (count)
-watch(count, (newV: number) => {
-    console.log(newV, 'menu provide inject')
-})
 </script>

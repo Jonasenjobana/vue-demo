@@ -7,7 +7,7 @@ export interface HeadMenuItem {
 export const MenuList: HeadMenuItem[] = [
     {
         title: '组件库',
-        path: '/main/components-library',
+        path: '/main/component',
     },
     {
         title: '地图',

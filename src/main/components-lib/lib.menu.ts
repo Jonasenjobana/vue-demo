@@ -7,5 +7,9 @@ export const LibMenuList: HeadMenuItem[] = [
     {
         title: '选择器Select',
         path: '/main/component/demo/select'
+    },
+    {
+        title: 'Map',
+        path: '/main/component/demo/map'
     }
 ]

@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-column">
+    <div class="flex flex-column h-full">
         <div class="w-[200px] px-[10px]">
             <ul>
                 <li v-for="item in LibMenuList" class="my-[10px] cursor-pointer hover:text-emerald-300">
@@ -7,8 +7,8 @@
                 </li>
             </ul>
         </div>
-        <div>
-            <RouterView></RouterView>
+        <div class="flex-1">
+            <RouterView style="height: 100%;width: 100%;"></RouterView>
         </div>
     </div>
 </template>

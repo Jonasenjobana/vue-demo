@@ -1,16 +1,23 @@
 <template>
-    <component :is="tag" :class="[ns.b('button'), ns.bm('button', typeRef)]">
+    <component :is="tag" :class="[ns.b('button'), ns.bm('button', typeRef)]" @click="emit('click', $event)">
+        <slot></slot>
     </component>
-    <!-- <button :class="[ns.b('button'), ns.bm('button', typeRef)]">test</button> -->
 </template>
 
 <script setup lang="ts">
-import { computed, getCurrentInstance, nextTick, watch, watchPostEffect, watchSyncEffect } from 'vue';
+import { PropType, computed } from 'vue';
 import { useNamespace } from '../utils/namespace.util';
+import { ButtonType } from './button';
+defineOptions({
+    name: 'SlButton'
+})
+const emit = defineEmits<{
+    'click': [event: MouseEvent]
+}>()
 const ns = useNamespace('sl');
 const props = defineProps({
     inType: {
-        type: String,
+        type: String as PropType<ButtonType>,
         default: 'default',
     },
     tag: {
@@ -21,7 +28,7 @@ const props = defineProps({
 const typeRef = computed(() => {
     return props.inType
 })
-const instance = getCurrentInstance();
+
 
 </script>
 

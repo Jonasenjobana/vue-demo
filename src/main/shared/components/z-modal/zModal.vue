@@ -1,5 +1,5 @@
 <template>
-    <div class="z-modal-container" :class="{ 'z-modal-mask': showMask }">
+    <div class="z-modal-container" :class="{ 'z-modal-mask': showMask }" v-show="visible">
         <div class="z-modal" :style="modalStyle">
             <div class="z-modal-head" @click="onClose()">
                 <span>{{ title }}</span>
@@ -17,20 +17,33 @@
 </template>
 
 <script setup lang="ts">
+import { ref, unref } from 'vue';
 import { useComputedStyle } from '../../utils/style.utils';
 import { ZModalProps } from './default';
 const props = defineProps({
     ...ZModalProps,
-  
 })
 const modalStyle = useComputedStyle(props, ['width', 'height']);
+const visible = ref(false);
 const emit = defineEmits(['close'])
 const onClose = () => {
+    visible.value = false
     props.closeCb?.();
     emit('close');
 }
+const onDestroy = () => {
+    onClose();
+    const maskEl = unref(props.maskContainer);
+    maskEl?.remove();
+}
+const onOpen = () => {
+    visible.value = true;
+    console.log('open')
+}
 defineExpose({
-    onClose
+    onClose,
+    onOpen,
+    onDestroy
 })
 </script>
 

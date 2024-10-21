@@ -14,7 +14,8 @@ export interface ZModalConfig {
     appendTo?: MaybeRef<HTMLElement>
 }
 export interface _ZModalConfig extends ZModalConfig {
-    _init?: Function
+    /**临时生成的mask 会销毁 */
+    maskContainer?: MaybeRef<HTMLElement>
 }
 export const ZModalProps = {
     title: String,
@@ -39,12 +40,7 @@ export const ZModalProps = {
     footterVnode: Function as PropType<() => VNode>,
     footerBtns: Array as PropType<ZModalFooterBtn[]>,
     closeCb: Function,
-    _init: {
-        type: Function,
-        default: (ref: any) => {
-            
-        }
-    }
+    maskContainer: Object as PropType<MaybeRef<HTMLElement>>
 }
 export interface ZModalFooterBtn {
     label: string;

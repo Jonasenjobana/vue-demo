@@ -7,7 +7,7 @@ export function useRender(props: any, slots: SetupContext['slots']) {
             class: 'cell'
         };
         const children = slots.default?.({
-            row, col
+            row, col, $index: 0
         });
         return h('div', cellProp, children ? children : h('span', {
             class: 'cell-span',

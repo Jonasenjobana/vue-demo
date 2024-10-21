@@ -37,7 +37,8 @@ defineProps({
     },
 })
 const config = reactive<ZTableConfig>({
-    columns: []
+    columns: [],
+    treeConfig: {}
 })
 provide('$zTableConfig', config)
 const columns = computed(() => {
@@ -45,4 +46,8 @@ const columns = computed(() => {
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+    .z-table {
+        width: 100%;
+    }
+</style>

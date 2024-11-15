@@ -1,14 +1,15 @@
 import L, { map } from "leaflet";
-import { InjectionKey, MaybeRef, MaybeRefOrGetter, Reactive, Ref, inject, onMounted, provide, reactive, ref, shallowReactive, shallowRef, unref, watch } from "vue";
+import { InjectionKey, MaybeRef, MaybeRefOrGetter, Reactive, Ref, ShallowRef, inject, onMounted, provide, reactive, ref, shallowReactive, shallowRef, unref, watch } from "vue";
 import { MapDefaultOption, getWMSTileLayer } from "./map.config";
 import { PlottingElement, PlottingOption } from "../../map/map.model";
 import { LeafletPlottingLayer } from "../../map/plotting.layer";
-export const MAP_PROVIDE_TOKEN = Symbol("leafletMapRef") as InjectionKey<Ref<L.Map>>;
+import * as MT from "maptalks";
+export const MAP_PROVIDE_TOKEN = Symbol("leafletMapRef") as InjectionKey<ShallowRef<L.Map|MT.Map|undefined>>;
 /**
  * @returns
  */
-export function useSLMap(mapELRef: MaybeRef<HTMLElement>) {
-  const mapRef = shallowRef();
+export function useSLLeafletMap(mapELRef: MaybeRef<HTMLElement | undefined>) {
+  const mapRef = shallowRef<L.Map>();
   provide(MAP_PROVIDE_TOKEN, mapRef);
   onMounted(() => {
     const el = unref(mapELRef);
@@ -21,6 +22,38 @@ export function useSLMap(mapELRef: MaybeRef<HTMLElement>) {
     gaodeTile.addTo(lmap);
     mapWmsLayers.push(gaodeTile);
     mapRef.value = lmap;
+  });
+  return {
+    mapRef,
+  };
+}
+export function useSLMapTalksMap(mapELRef: MaybeRef<HTMLElement | undefined>) {
+  const mapRef = shallowRef<MT.Map>();
+  provide(MAP_PROVIDE_TOKEN, mapRef);
+  onMounted(() => {
+    const el = unref(mapELRef);
+    if (!el) {
+      throw new Error("mapElRef not found");
+    }
+    const mt = new MT.Map(el, {
+      center: [105.08052356963802, 36.04231948670001],
+      zoom: 5,
+      minZoom:1,
+      maxZoom:19,
+      spatialReference:{
+        projection : 'baidu'
+      },
+      renderable: true,
+      baseLayer: new MT.TileLayer('base', {
+        'urlTemplate' : 'https://gss{s}.bdstatic.com/8bo_dTSlRsgBo1vgoIiO_jowehsv/tile/?qt=tile&x={x}&y={y}&z={z}&styles=pl&scaler=1&udt=20170927',
+        'subdomains': ['0', '1', '2', '3'],
+        'attribution' :  '&copy; <a target="_blank" href="http://map.baidu.com">Baidu</a>'
+      }),
+      maxPitch: 45,
+      layerCanvasLimitOnInteracting: 2,
+    });
+    mapRef.value = mt;
+    console.log(mt.getDevicePixelRatio())
   });
   return {
     mapRef,

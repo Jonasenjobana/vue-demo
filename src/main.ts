@@ -5,6 +5,8 @@ import App from './App.vue'
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import NotFound from './main/tpl/404.vue';
 import Main from './main/Main.vue';
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
 import { mainRoute } from './main/main.route';
 import { createPinia } from 'pinia';
 const routes: RouteRecordRaw[] = [
@@ -19,4 +21,4 @@ const router = createRouter({
   routes,
 })
 const pinia = createPinia()
-export const app = createApp(App).use(router).use(pinia).mount('#app')
+export const app = createApp(App).use(ElementPlus).use(router).use(pinia).mount('#app')

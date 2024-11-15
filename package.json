@@ -9,8 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@amap/amap-jsapi-types": "^0.0.15",
     "echarts": "^5.5.1",
+    "element-plus": "^2.8.6",
     "leaflet": "^1.9.4",
+    "maptalks": "^1.0.0-rc.40",
     "pinia": "^2.2.4",
     "vue": "^3.4.31",
     "vue-router": "^4.4.3"

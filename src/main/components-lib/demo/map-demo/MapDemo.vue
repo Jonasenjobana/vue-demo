@@ -2,16 +2,57 @@
     <div class="w-full h-full relative">
         <div class="map" ref="mapElRef"></div>
         <map-control></map-control>
+        <button @click="fit()">ffffff</button>
     </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, shallowRef } from 'vue';
+import { ref, watch } from 'vue';
 import MapControl from './MapControl.vue';
-import { useSLMap } from '../../../shared/hook/map/useMap';
-const mapElRef = ref<HTMLElement>();
-const { mapRef } = useSLMap(mapElRef);
+import { useSLLeafletMap, useSLMapTalksMap } from '../../../shared/hook/map/useMap';
+import { MTCanvasLayer } from '../../../shared/map/maptalks/mt.canvas.layer';
+import { LineString, VectorLayer } from 'maptalks';
 
+const mapElRef = ref<HTMLElement>();
+// const { mapRef } = useSLLeafletMap(mapElRef);
+const { mapRef } = useSLMapTalksMap(mapElRef);
+const drawLayer = ref<MTCanvasLayer>();
+function fit() {
+    const a = mapRef.value.getExtent();
+    console.log(a)
+}
+watch(mapRef, (map) => {
+    if (map) {
+        const layer = drawLayer.value = new MTCanvasLayer('drawplot').addTo(map);
+        var layer2 = new VectorLayer('vector', []).addTo(map);
+
+        var line = new LineString(
+            [
+                map.getCenter().sub(3, 0),
+                map.getCenter().add(3, 0),
+                map.getCenter().add(3, 3),
+                map.getCenter().add(2, 4)
+            ],
+            {
+                symbol: {
+                    'linePatternFile': '/direction-arrow.png',
+                    'linePatternDx': 0,
+                    'lineWidth': 20,
+                    smoothness : 0.5,
+                }
+            }
+        ).translate(0.04, 0).addTo(layer2);
+
+        line.animate({
+            symbol: {
+                // 20 is the width of pattern.png to ensure seamless animation
+                linePatternDx: 20
+            }
+        }, {
+            repeat: true
+        });
+    }
+})
 </script>
 
 <style scoped>

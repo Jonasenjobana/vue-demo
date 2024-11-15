@@ -11,5 +11,14 @@ export const LibMenuList: HeadMenuItem[] = [
     {
         title: 'Map',
         path: '/main/component/demo/map'
+    },
+    {
+        title: 'GL',
+        path: '/main/component/demo/GL'
+    },
+    
+    {
+        title: 'Canvas',
+        path: '/main/component/demo/Canvas'
     }
 ]

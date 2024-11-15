@@ -13,12 +13,13 @@ export interface DynamicComponent {
     x: number;
     y: number;
   };
+  context: any;
 }
 export function useDynamicComponent() {
   const allVNode: VNode[] = []
   const componentMap: WeakMap<any, VNode[]> = new WeakMap();
   const useCreateDynamicComponent = (dynamicComponent: DynamicComponent) => {
-    const { slotTemplate, slotParams = {}, component, componentParams = {}, key, appendTo } = dynamicComponent;
+    const { slotTemplate, slotParams = {}, component, componentParams = {}, key, appendTo, context } = dynamicComponent;
     const slotComponent = ref<VNode>();
     if (componentMap.has(component)) {
       slotComponent.value = componentMap.get(component)?.find((item) => {
@@ -41,8 +42,10 @@ export function useDynamicComponent() {
         return [slotComponent.value];
       }
     );
-    allVNode.push(vn);
     vn.key = key as PropertyKey;
+    vn.appContext = context;
+    allVNode.push(vn);
+    console.log(vn)
     console.log(vn, componentMap, allVNode);
     const appendEl = unref(appendTo);
     if (!appendEl) return;

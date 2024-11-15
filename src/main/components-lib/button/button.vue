@@ -32,4 +32,12 @@ const typeRef = computed(() => {
 
 </script>
 
-<style scoped></style>
+<style scoped lang="less">
+    .sl-button {
+        padding: 2px 8px;
+        background-color: rgb(80, 173, 255);
+        min-width: 60px;
+        border-radius: 4px;
+        height: 30px;
+    }
+</style>

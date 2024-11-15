@@ -1,6 +1,7 @@
 import L from "leaflet";
+import { MapCreateOptionsType } from "maptalks";
 
-export const MapDefaultOption: L.MapOptions = {
+export const MapDefaultOption: L.MapOptions & MapCreateOptionsType = {
   // center: [38.712216, 117.22655],
   center: [38.700283, 123.85422],
   // maxBounds: L.latLngBounds([-90, -180], [90, 180]),

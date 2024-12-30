@@ -25,32 +25,54 @@ watch(mapRef, (map) => {
     if (map) {
         const layer = drawLayer.value = new MTCanvasLayer('drawplot').addTo(map);
         var layer2 = new VectorLayer('vector', []).addTo(map);
+        const line = new LineString(
+        [
+          map.getCenter().sub(0.1, 0),
+          map.getCenter().add(0.1, .3)
+        ],
+        {
+          symbol:{
+            'linePatternFile' : 'direction-arrow.png',
+            'linePatternDx' : 0,
+            'lineWidth' : 10
+          }
+        }
+      ).addTo(layer2);
 
-        var line = new LineString(
-            [
-                map.getCenter().sub(3, 0),
-                map.getCenter().add(3, 0),
-                map.getCenter().add(3, 3),
-                map.getCenter().add(2, 4)
-            ],
-            {
-                symbol: {
-                    'linePatternFile': '/direction-arrow.png',
-                    'linePatternDx': 0,
-                    'lineWidth': 20,
-                    smoothness : 0.5,
-                }
-            }
-        ).translate(0.04, 0).addTo(layer2);
+      line.animate({
+        symbol : {
+          // 20 is the width of pattern.png to ensure seamless animation
+          linePatternDx : 20
+        }
+      }, {
+        repeat : true
+      });
 
-        line.animate({
-            symbol: {
-                // 20 is the width of pattern.png to ensure seamless animation
-                linePatternDx: 20
-            }
-        }, {
-            repeat: true
-        });
+        // var line = new LineString(
+        //     [
+        //         map.getCenter().sub(3, 0),
+        //         map.getCenter().add(3, 0),
+        //         map.getCenter().add(3, 3),
+        //         map.getCenter().add(2, 4)
+        //     ],
+        //     {
+        //         symbol: {
+        //             'linePatternFile': '/direction-arrow.png',
+        //             'linePatternDx': 0,
+        //             'lineWidth': 20,
+        //             smoothness : 0.5,
+        //         }
+        //     }
+        // ).translate(0.04, 0).addTo(layer2);
+
+        // line.animate({
+        //     symbol: {
+        //         // 20 is the width of pattern.png to ensure seamless animation
+        //         linePatternDx: 20
+        //     }
+        // }, {
+        //     repeat: true
+        // });
     }
 })
 </script>

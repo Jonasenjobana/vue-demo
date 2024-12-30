@@ -9,6 +9,8 @@ import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import { mainRoute } from './main/main.route';
 import { createPinia } from 'pinia';
+import BScroll from '@better-scroll/core'
+import MouseWheel from '@better-scroll/mouse-wheel';
 const routes: RouteRecordRaw[] = [
   // { path: '/hello', component: HelloWorld },
   { path: '/main', component: Main, children: mainRoute },
@@ -16,6 +18,7 @@ const routes: RouteRecordRaw[] = [
   { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
 ]
 
+BScroll.use(MouseWheel)
 const router = createRouter({
   history: createWebHashHistory(),
   routes,

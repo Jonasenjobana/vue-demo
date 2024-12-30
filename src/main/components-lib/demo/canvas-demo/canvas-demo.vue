@@ -30,9 +30,9 @@ const animate = () => {
             drawLine();
             console.log(prevOffset)
             prevOffset = prevOffset+1 <= 20 ? prevOffset + 1 : 0;
-            animeFlag = requestAnimationFrame((time) => {
-                draw(time);
-            });
+            // animeFlag = requestAnimationFrame((time) => {
+            //     draw(time);
+            // });
         }
     }
     draw();
@@ -44,28 +44,36 @@ function clear() {
 let prevOffset = 0;
 function drawLine() {
     const ctx = unref(ctxRef);
-    
-    ctx.moveTo(50, 50);
-    ctx.save();
-    // 50 50 200 200 中点
-    const degree = computeDegree(50, 50, 200, 200);
-    ctx.rotate(degree);
-    ctx.translate(prevOffset+1, 0)
-    const strokeWidth = 10;
-    const canvas = document.createElement('canvas');
-    canvas.width = canvas.height = strokeWidth;
-    const ctx2 = canvas.getContext('2d');
-    ctx2.drawImage(img, 0, 0, strokeWidth, strokeWidth)
-    const pattern = ctx.createPattern(canvas, 'repeat');
-    const matrix = new DOMMatrix();
-    matrix.rotateSelf(90);
-    matrix.translateSelf(5, 5);
-    pattern.setTransform(matrix)
-    ctx.strokeStyle = pattern
-    ctx.lineWidth = 10;
-    ctx.stroke()
+    // ctx.save();
+    // ctx.translate(55, 55)
+    // ctx.moveTo(0, 0);
+    // // 50 50 200 200 中点
+    // const degree = computeDegree(0, 0, 50 - 53, 200 - 53);
+    // ctx.rotate(degree);
+    // ctx.translate(prevOffset+.1,0)
+    // const strokeWidth = 10;
+    // const canvas = document.createElement('canvas');
+    // canvas.width = canvas.height = strokeWidth;
+    // const ctx2 = canvas.getContext('2d');
+    // ctx2.drawImage(img, 0, 0, strokeWidth, strokeWidth)
+    // const pattern = ctx.createPattern(canvas, 'repeat');
+    // const matrix = new DOMMatrix();
+    // matrix.rotateSelf(90);
+    // matrix.translateSelf(5, 5);
+    // pattern.setTransform(matrix)
+    // ctx.strokeStyle = pattern
+    // ctx.lineWidth = 10;
+    // ctx.stroke();
+    // ctx.restore();
+    ctx.save()
+    ctx.strokeStyle = 'red';
+    ctx.translate(50, 50);
+    ctx.moveTo(0,0);
+    ctx.lineTo(-50, -50);
+    ctx.stroke();
     ctx.restore();
-    ctx.lineTo(200, 200);
+
+    // ctx.lineTo(50, 200);
 
     // ctx.translate(0, prevOffset-1)
     // ctx.rotate(-Math.PI)

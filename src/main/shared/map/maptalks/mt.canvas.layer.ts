@@ -17,12 +17,14 @@ export class MTCanvasLayer extends MT.CanvasLayer {
   animeFlag?: number;
   prepareToDraw(ctx?: CanvasRenderingContext2D): void {
     if (ctx) {
-      this.arrowLine = new MapArrowLine(this.map, ctx, { isBezier: true, lineWidth: 4 });
+      this.arrowLine = new MapArrowLine(this.map, ctx, {  lineWidth: 4 });
       this.arrowLine.setAllLines([
         {
           latlngs: [
-            [33.745, 117.555],
-            [39.2145, 115.345],
+            [32.745, 113.555],
+            [35.2145, 115.345],
+            [34.675, 117.555],
+            [32.745, 113.555],
           ],
         },
       ]);

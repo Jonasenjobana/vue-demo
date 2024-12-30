@@ -2,10 +2,10 @@
     <div>
         <layout>
             <template #header="slotProps">
-                <app-menu :slot-props="slotProps"></app-menu>
+                <!-- <app-menu :slot-props="slotProps"></app-menu> -->
             </template>
             <template #footer>
-                <h1>footer</h1>
+                <!-- <h1>footer</h1> -->
             </template>
         </layout>
     </div>

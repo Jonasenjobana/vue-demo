@@ -1,5 +1,9 @@
 @import "/node_modules/leaflet/dist/leaflet.css";
 @import "/node_modules/maptalks/dist/maptalks.css";
+@import '/node_modules/modern-normalize/modern-normalize.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+:root {
+    --color-primary: #0a8cfa;
+}

@@ -1,12 +1,13 @@
 <template>
     <div class="sl-select">
-        <input type="text">
+
     </div>
 </template>
 
 <script setup lang="ts">
 defineOptions({
-    
+    options: {
+    }
 })
 </script>
 

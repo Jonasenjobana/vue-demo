@@ -10,10 +10,14 @@
   },
   "dependencies": {
     "@amap/amap-jsapi-types": "^0.0.15",
+    "@better-scroll/core": "^2.5.1",
+    "@better-scroll/mouse-wheel": "^2.5.1",
+    "animejs": "^3.2.2",
     "echarts": "^5.5.1",
     "element-plus": "^2.8.6",
     "leaflet": "^1.9.4",
     "maptalks": "^1.0.0-rc.40",
+    "modern-normalize": "^3.0.1",
     "pinia": "^2.2.4",
     "vue": "^3.4.31",
     "vue-router": "^4.4.3"
@@ -26,7 +30,7 @@
     "less": "^4.2.0",
     "postcss": "^8.4.41",
     "tailwindcss": "^3.4.8",
-    "typescript": "^5.2.2",
+    "typescript": "^5.6.3",
     "vite": "^5.3.5",
     "vue-tsc": "^2.0.24"
   }
